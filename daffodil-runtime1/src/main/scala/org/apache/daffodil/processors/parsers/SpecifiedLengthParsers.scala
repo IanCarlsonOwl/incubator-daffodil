@@ -25,6 +25,7 @@ import passera.unsigned.ULong
 import org.apache.daffodil.equality._
 import org.apache.daffodil.exceptions.Assert
 import org.apache.daffodil.processors.ElementRuntimeData
+import org.apache.daffodil.processors.ChoiceRuntimeData
 import org.apache.daffodil.processors.RuntimeData
 import org.apache.daffodil.processors.Evaluatable
 import org.apache.daffodil.processors.Success
@@ -60,7 +61,8 @@ sealed abstract class SpecifiedLengthParserBase(
     val dis = pState.dataInputStream
 
     val shouldCheckDefinedForLength = erd match {
-      case erd: ElementRuntimeData => !erd.isComplexType
+      case erd : ElementRuntimeData => !erd.isComplexType
+      case _ : ChoiceRuntimeData => false
       case _ => true
     }
 
