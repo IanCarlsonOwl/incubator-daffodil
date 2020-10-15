@@ -25,10 +25,12 @@ object TestUserSubmittedTests {
   val testDir = "/org/apache/daffodil/usertests/"
   val runner = Runner(testDir, "UserSubmittedTests.tdml")
   val runner2 = Runner(testDir, "nameDOB_test.tdml")
+  val runner3 = Runner(testDir, "IanThrowAwayTest.tdml")
 
   @AfterClass def shutDown: Unit = {
     runner.reset
     runner2.reset
+    runner3.reset
   }
 
 }
@@ -50,6 +52,8 @@ class TestUserSubmittedTests {
 
   @Test def test_nameDOB_test2_pass(): Unit = { runner2.runOneTest("nameDOB_test2_pass") }
   @Test def test_nameDOB_test2_fail(): Unit = { runner2.runOneTest("nameDOB_test2_fail") }
+
+  @Test def test_IanThrowAwayTest(): Unit = { runner3.runOneTest("test_IanThrowAwayTestCase") }
 
   /*//DFDL-1118
   @Test def test_dfdl_782() = {
